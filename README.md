@@ -5,5 +5,5 @@ emlog bangumi数据展示插件
 当前仅在[个人博客](http://www.ijglb.com/ "极光萝卜")中使用，尚未开发完成。  
 暂时的效果可在[http://www.ijglb.com/about](http://www.ijglb.com/about)查看  
 ## ToDo
-- 前台展示页面 
-- 获取除追番外的信息 
+- [ ] 前台展示页面 
+- [x] 获取除追番外的信息  
