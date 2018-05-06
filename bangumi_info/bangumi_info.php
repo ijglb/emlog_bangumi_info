@@ -18,7 +18,7 @@ addAction('adm_sidebar_ext', 'bangumi_info_menu');
 <?php function bangumi_info_output(){//页面输出函数
  require_once 'bangumi_info_config.php'; ?>
 <div class="mdui-typo">
-	<p>快速导航：<a class="not-ajaxload" href="#bgm-a-do">正在追番</a>
+	<p>快速导航：<a class="not-ajaxload" href="#a-do">正在追番</a>
 	<a class="not-ajaxload" href="#a-collect">看过的番</a>
 	<a class="not-ajaxload" href="#c-do">正在看的漫画/小说</a>
 	<a class="not-ajaxload" href="#c-collect">看过的漫画/小说</a>
