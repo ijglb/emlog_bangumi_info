@@ -45,7 +45,7 @@ function ParseCollectionData($html){
 					 }
 					 if(isset($url)){
 						$res_arr[] = array(
-							'name'=> isset($name) ? $name : '',
+							'name'=> isset($name) ? $name : $name_cn,
 							'name_cn'=>$name_cn,
 							'image'=>$img,
 							'url'=>$url,
