@@ -38,12 +38,11 @@ function ParseCollectionData($html){
 					 else{
 						 $img = 'http://bgm.tv/img/no_icon_subject.png';
 					 }
-					 if(preg_match('#<h3>.<a href="(.+?)" class="l">(.+?)</a>.*?(?:<small class=".+?">(.+?)</small>)?.</h3>#s',$li,$infomatch)){
+					 if(preg_match('#<h3>.*?<a href="(.+?)" class="l">(.+?)</a>.*?(?:<small class=".+?">(.+?)</small>)?.*?</h3>#s',$li,$infomatch)){
 						 $url = 'http://bgm.tv'.$infomatch[1];
 						 $name_cn = $infomatch[2];
 						 $name = $infomatch[3];
-					 }
-					 if(isset($url)){
+
 						$res_arr[] = array(
 							'name'=> isset($name) ? $name : $name_cn,
 							'name_cn'=>$name_cn,

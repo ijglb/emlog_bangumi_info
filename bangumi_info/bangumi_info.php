@@ -76,7 +76,7 @@ addAction('adm_sidebar_ext', 'bangumi_info_menu');
 					str+= '<div class="mdui-card-header-title bgm-content">'+value.name_cn+'</div>';
 					str+= '<div class="mdui-card-header-subtitle bgm-content">'+value.name+'</div>';
 					str+= '<div class="mdui-card-header-subtitle bgm-content">&nbsp;</div>';
-					if(value.eps_count == 0 && value.ep_status == 0){
+					if((value.eps_count == 0 && value.ep_status == 0)||value.eps_count == null){
 						str+= '<div class="mdui-card-header-subtitle mdui-progress bgm-content"><div class="mdui-progress-determinate" style="width: 100%;">进度：未知</div></div>';
 					}
 					else{
