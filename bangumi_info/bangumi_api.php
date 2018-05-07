@@ -38,7 +38,7 @@ function ParseCollectionData($html){
 					 else{
 						 $img = 'http://bgm.tv/img/no_icon_subject.png';
 					 }
-					 if(preg_match('#<h3>.*?<a href="(.+?)" class="l">(.+?)</a>.*?(?:<small class=".+?">(.+?)</small>)?.*?</h3>#s',$li,$infomatch)){
+					 if(preg_match('#<h3>.*?<a href="(.+?)" class="l">(.+?)</a>.(?:<small class=".+?">(.+?)</small>)?.*?</h3>#s',$li,$infomatch)){
 						 $url = 'http://bgm.tv'.$infomatch[1];
 						 $name_cn = $infomatch[2];
 						 $name = $infomatch[3];
@@ -131,12 +131,12 @@ function bangumi_user_do_collection($subjecttype,$page){
 		$html = curl_get($url);
 		if(isset($html)){
 			$output = ParseCollectionData($html);
-			if($output['code'] == 0){
+			if($output['code'] == '0'){
 				$output['page'] = $page;
 			}
 		}
 	}
-	return json_encode($output);
+	return $output;
 }
 //获取用户指定类型的收藏概览，固定返回最近更新的收藏，不支持翻页 book/anime/music/game/real
 /* function bangumi_user_collections_recently($subjecttype){
@@ -149,31 +149,57 @@ function bangumi_user_html_collection($status,$subjecttype,$page){
 	$html = curl_get($url);
 	if(isset($html)){
 		$output = ParseCollectionData($html);
-		if($output['code'] == 0){
+		if($output['code'] == '0'){
 			$output['page'] = $page;
 		}
 	}
-	return json_encode($output);
+	return $output;
 }
 
 //type:book,anime,music,game,real
+$cachedir = __DIR__.'/cache/';
+if(!is_dir($cachedir)){
+	mkdir($cachedir,0755,true);
+}
+$cachetime = isset($config['cache']) ? $config['cache'] : 0;
 if(!isset($_GET['action'])) exit('null');
 if(!isset($_GET['type'])) exit('null');
 $action = addslashes($_GET['action']);
 $subjecttype = addslashes($_GET['type']);
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 if($page == 0) $page = 1;
-switch ($action) {
-	case 'do'://在做
-		print_r(bangumi_user_do_collection($subjecttype,$page));
-		break;
-	case 'wish'://想做
-	case 'collect'://做过
-	case 'on_hold'://搁置
-	case 'dropped'://抛弃
-		print_r(bangumi_user_html_collection($action,$subjecttype,$page));
-		break;
-	default:
-		exit('null');
-		break;
+//读取缓存
+$cachefile = $cachedir.$subjecttype.'_'.$action.'_'.$page.'.json';
+if($cachetime != 0 && file_exists($cachefile)){
+	//以分钟作为单位
+	if(floor((time()-filemtime($cachefile))%86400/60) <= $cachetime*60){
+		$out = file_get_contents($cachefile);
+	}
 }
+if(!isset($out)){//缓存过期或没有缓存则请求接口
+	switch ($action) {
+		case 'do'://在做
+			$arr = bangumi_user_do_collection($subjecttype,$page);
+			break;
+		case 'wish'://想做
+		case 'collect'://做过
+		case 'on_hold'://搁置
+		case 'dropped'://抛弃
+			$arr = bangumi_user_html_collection($action,$subjecttype,$page);
+			break;
+		default:
+			$arr = null;
+			break;
+	}
+	if(isset($arr)){
+		$out = json_encode($arr);
+		if($cachetime != 0 && $arr['code'] == 0 && count($arr['data']) > 0){
+			//进行数据缓存
+			file_put_contents($cachefile,$out,LOCK_EX);
+		}
+	}
+	else{
+		exit('null');
+	}
+}
+print_r($out);

@@ -1,5 +1,5 @@
 <?php
 $config = array(
-    "app_id" => "",
+    "cache" => "",
 	"user" => "",
 );
