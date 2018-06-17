@@ -33,13 +33,13 @@ function ParseCollectionData($html){
 				 foreach ($limatchArr as $limatch) {
 					 $li = $limatch[1];
 					 if(preg_match('#<img src="//lain\\.bgm\\.tv/pic/cover/./(.+?)" class="cover"#s',$li,$imgmatch)){
-						 $img = 'http://lain.bgm.tv/pic/cover/c/'.$imgmatch[1];
+						 $img = '//lain.bgm.tv/pic/cover/c/'.$imgmatch[1];
 					 }
 					 else{
-						 $img = 'http://bgm.tv/img/no_icon_subject.png';
+						 $img = '//bgm.tv/img/no_icon_subject.png';
 					 }
 					 if(preg_match('#<h3>.*?<a href="(.+?)" class="l">(.+?)</a>.(?:<small class=".+?">(.+?)</small>)?.*?</h3>#s',$li,$infomatch)){
-						 $url = 'http://bgm.tv'.$infomatch[1];
+						 $url = '//bgm.tv'.$infomatch[1];
 						 $name_cn = $infomatch[2];
 						 $name = $infomatch[3];
 
@@ -105,8 +105,8 @@ function bangumi_user_do_collection($subjecttype,$page){
 					$res_arr[] = array(
 						'name'=>$item->subject->name,
 						'name_cn'=>$item->subject->name_cn,
-						'image'=>$item->subject->images->common,
-						'url'=>$item->subject->url,
+						'image'=>str_replace("http:","",$item->subject->images->common),
+						'url'=>str_replace("http:","",$item->subject->url),
 						'ep_status'=>$item->ep_status,
 						'eps_count'=>$item->subject->eps_count
 					);

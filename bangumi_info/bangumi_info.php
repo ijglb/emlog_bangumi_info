@@ -14,7 +14,6 @@ function bangumi_info_menu(){
 }
 addAction('adm_sidebar_ext', 'bangumi_info_menu');
 ?>
-
 <?php function bangumi_info_output(){//页面输出函数
  require_once 'bangumi_info_config.php'; ?>
 <div class="mdui-typo">
@@ -28,7 +27,7 @@ addAction('adm_sidebar_ext', 'bangumi_info_menu');
 	<div class="mdui-row-sm-1 mdui-row-md-2 i-card" id="bgm-a-do">
 		<div class="mdui-col">加载中...</div>
 	</div>
-	<h3 id="a-collect">看过的番<a target="_blank" href="http://bgm.tv/anime/list/<?php echo $config["user"]; ?>/collect">More</a></h3>
+	<h3 id="a-collect">看过的番<a target="_blank" href="//bgm.tv/anime/list/<?php echo $config["user"]; ?>/collect">More</a></h3>
 	<div class="mdui-row-sm-1 mdui-row-md-2 i-card" id="bgm-a-collect">
 		<div class="mdui-col">加载中...</div>
 	</div>
@@ -36,7 +35,7 @@ addAction('adm_sidebar_ext', 'bangumi_info_menu');
 	<div class="mdui-row-sm-1 mdui-row-md-2 i-card" id="bgm-c-do">
 		<div class="mdui-col">加载中...</div>
 	</div>
-	<h3 id="c-collect">看过的漫画/小说<a target="_blank" href="http://bgm.tv/book/list/<?php echo $config["user"]; ?>/collect">More</a></h3>
+	<h3 id="c-collect">看过的漫画/小说<a target="_blank" href="//bgm.tv/book/list/<?php echo $config["user"]; ?>/collect">More</a></h3>
 	<div class="mdui-row-sm-1 mdui-row-md-2 i-card" id="bgm-c-collect">
 		<div class="mdui-col">加载中...</div>
 	</div>
@@ -44,7 +43,7 @@ addAction('adm_sidebar_ext', 'bangumi_info_menu');
 	<div class="mdui-row-sm-1 mdui-row-md-2 i-card" id="bgm-g-do">
 		<div class="mdui-col">加载中...</div>
 	</div>
-	<h3 id="g-collect">玩过的游戏<a target="_blank" href="http://bgm.tv/game/list/<?php echo $config["user"]; ?>/collect">More</a></h3>
+	<h3 id="g-collect">玩过的游戏<a target="_blank" href="//bgm.tv/game/list/<?php echo $config["user"]; ?>/collect">More</a></h3>
 	<div class="mdui-row-sm-1 mdui-row-md-2 i-card" id="bgm-g-collect">
 		<div class="mdui-col">加载中...</div>
 	</div>
