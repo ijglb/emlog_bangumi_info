@@ -17,17 +17,17 @@ addAction('adm_sidebar_ext', 'bangumi_info_menu');
 <?php function bangumi_info_output(){//页面输出函数
  require_once 'bangumi_info_config.php'; ?>
 <div class="mdui-typo">
-	<p>快速导航：<a class="not-ajaxload" href="#a-do">正在追番</a>
-	<a class="not-ajaxload" href="#a-collect">看过的番</a>
+	<p>快速导航：<a class="not-ajaxload" href="#a-do">正在看的动画</a>
+	<a class="not-ajaxload" href="#a-collect">看过的动画</a>
 	<a class="not-ajaxload" href="#c-do">正在看的漫画/小说</a>
 	<a class="not-ajaxload" href="#c-collect">看过的漫画/小说</a>
 	<a class="not-ajaxload" href="#g-do">正在玩的游戏</a>
 	<a class="not-ajaxload" href="#g-collect">玩过的游戏</a></p>
-	<h3 id="a-do">正在追番</h3>
+	<h3 id="a-do">正在看的动画</h3>
 	<div class="mdui-row-sm-1 mdui-row-md-2 i-card" id="bgm-a-do">
 		<div class="mdui-col">加载中...</div>
 	</div>
-	<h3 id="a-collect">看过的番<a target="_blank" href="//bgm.tv/anime/list/<?php echo $config["user"]; ?>/collect">More</a></h3>
+	<h3 id="a-collect">看过的动画<a target="_blank" href="//bgm.tv/anime/list/<?php echo $config["user"]; ?>/collect">More</a></h3>
 	<div class="mdui-row-sm-1 mdui-row-md-2 i-card" id="bgm-a-collect">
 		<div class="mdui-col">加载中...</div>
 	</div>

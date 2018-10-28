@@ -171,8 +171,8 @@ if($page == 0) $page = 1;
 //读取缓存
 $cachefile = $cachedir.$subjecttype.'_'.$action.'_'.$page.'.json';
 if($cachetime != 0 && file_exists($cachefile)){
-	//以分钟作为单位
-	if(floor((time()-filemtime($cachefile))%86400/60) <= $cachetime*60){
+	//以小时作为单位
+	if(((time()-filemtime($cachefile))/3600) <= $cachetime){
 		$out = file_get_contents($cachefile);
 	}
 }
@@ -195,7 +195,8 @@ if(!isset($out)){//缓存过期或没有缓存则请求接口
 		$out = json_encode($arr);
 		if($cachetime != 0 && $arr['code'] == 0 && count($arr['data']) > 0){
 			//进行数据缓存
-			file_put_contents($cachefile,$out,LOCK_EX);
+			//file_put_contents($cachefile,$out,LOCK_EX);
+			file_put_contents($cachefile,$out);
 		}
 	}
 	else{
