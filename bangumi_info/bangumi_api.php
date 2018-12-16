@@ -114,6 +114,8 @@ function bangumi_user_do_collection($subjecttype,$page){
 						'name_cn'=>$item->subject->name_cn,
 						'image'=>str_replace("http:","",$item->subject->images->common),
 						'url'=>str_replace("http:","",$item->subject->url),
+						'star'=>null,
+						'update_time'=>null,
 						'ep_status'=>$item->ep_status,
 						'eps_count'=>$item->subject->eps_count
 					);
