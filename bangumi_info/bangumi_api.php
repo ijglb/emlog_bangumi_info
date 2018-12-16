@@ -43,11 +43,18 @@ function ParseCollectionData($html){
 						 $name_cn = $infomatch[2];
 						 $name = $infomatch[3];
 
+						 if(preg_match('#<span class="sstars(\d+) starsinfo"></span>.*?<span class="tip_j">(.*?)</span>#s',$li,$update)){
+							$star = $update[1];
+							$update_time = $update[2];
+						 }
+
 						$res_arr[] = array(
 							'name'=> isset($name) ? $name : $name_cn,
 							'name_cn'=>$name_cn,
 							'image'=>$img,
 							'url'=>$url,
+							'star'=>$star,
+							'update_time'=>$update_time,
 							'ep_status'=>0,
 							'eps_count'=>0
 						);
